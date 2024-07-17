@@ -17,7 +17,8 @@ const Home = (props: Props) => {
   const [news, setNews] = useState([]);
 
   useEffect(() => {
-    let ipStackAPIKey = process.env.NEXT_PUBLIC_IPSTACK_API_KEY;
+    let isMounted = true;
+    const ipStackAPIKey = process.env.NEXT_PUBLIC_IPSTACK_API_KEY;
 
     const fetchUserLocation = async () => {
       try {
@@ -25,6 +26,8 @@ const Home = (props: Props) => {
           `http://api.ipstack.com/check?access_key=${ipStackAPIKey}`
         );
         const data = await getIp.json();
+
+        if (!isMounted) return;
 
         const info = {
           ip: data.ip,
@@ -43,14 +46,23 @@ const Home = (props: Props) => {
         // Now fetch news based on location
         const newsData = await searchWorldNews(12, locationFilter);
 
-        setNews(newsData.news || []);
+        if (isMounted) {
+          setNews(newsData.news || []);
+        }
       } catch (error) {
-        console.error("Error fetching user location:", error);
+        if (isMounted) {
+          console.error("Error fetching user location:", error);
+        }
       }
     };
 
     fetchUserLocation();
+
+    return () => {
+      isMounted = false;
+    };
   }, []);
+
   return (
     <div className="leading-[180%] bg-[#F4F4F5] w-full min-h-screen pt-12">
       <h1 className="text-center mb-6 text-zinc-800 text-4xl font-bold">

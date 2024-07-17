@@ -1,5 +1,7 @@
 # Regional News App
 
+![Regional News App Screenshot](/screenshot.png)
+
 A web application that displays news articles based on the user's geographical location. 
 
 Built with Next.js, [IPStack API](https://ipstack.com/), and [World News API](https://apilayer.com/marketplace/world_news-api), it offers a personalized news experience tailored to the user's region.
@@ -17,7 +19,7 @@ To set up the Regional News App project locally, follow these steps:
 
 1. Clone the repository:
    ```
-   git clone https://github.com/yourusername/regional-news-app.git
+   git clone https://github.com/apilayer/regional-news-app.git
    ```
 
 2. Navigate to the project directory:
