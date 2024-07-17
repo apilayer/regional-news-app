@@ -64,7 +64,7 @@ const Home = (props: Props) => {
   }, []);
 
   return (
-    <div className="leading-[180%] bg-[#F4F4F5] w-full min-h-screen pt-12">
+    <div className="leading-[180%] bg-[#F4F4F5] w-full min-h-screen py-12">
       <h1 className="text-center mb-6 text-zinc-800 text-4xl font-bold">
         Regional News App
       </h1>
